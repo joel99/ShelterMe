@@ -3,6 +3,7 @@ package com.example.shivad.myapplication;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
@@ -105,7 +106,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                attemptLogin();
+                if(mEmailView.getText().length() > 0 &&
+                        mPasswordView.getText().length() > 0)
+                    attemptLogin();
             }
         });
 
@@ -183,15 +186,19 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         String email = mEmailView.getText().toString();
         String password = mPasswordView.getText().toString();
 
-        boolean cancel = false;
-        View focusView = null;
-        if(data.get(email).equals(password)) {
+       // boolean cancel = false;
+        //View focusView = null;
+        if(data.get(email) != null && data.get(email).equals(password)) {
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
         }
         else {
-            mEmailView.setText("INCORRECT INFORMATION");
             mPasswordView.setText("");
+            AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
+            builder1.setMessage("Incorrect Information");
+            builder1.setCancelable(true);
+            AlertDialog alert11 = builder1.create();
+            alert11.show();
         }
 /*        // Check for a valid password, if the user entered one.
         if (!TextUtils.isEmpty(password) && !isPasswordValid(password)) {

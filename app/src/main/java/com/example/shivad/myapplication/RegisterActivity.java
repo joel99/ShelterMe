@@ -3,6 +3,7 @@ package com.example.shivad.myapplication;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
@@ -89,7 +90,12 @@ public class RegisterActivity extends AppCompatActivity implements LoaderCallbac
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                attemptLogin();
+                if(mEmailView.getText().length() > 0 &&
+                        mPasswordView.getText().length() > 0 &&
+                        mConfirmView.getText().length() > 0)
+                {
+                    attemptLogin();
+                }
             }
         });
 
@@ -170,16 +176,19 @@ public class RegisterActivity extends AppCompatActivity implements LoaderCallbac
         String email = mEmailView.getText().toString();
         String password = mPasswordView.getText().toString();
         String confirm = mConfirmView.getText().toString();
-        boolean cancel = false;
-        View focusView = null;
-        //LoginActivity.DataHolder.save(email, password);
         if(password.equals(confirm)) {
             LoginActivity.data.put(email,password);
             Intent mainIntent = new Intent(this, MainActivity.class);
             startActivity(mainIntent);
         }
         else {
-            mEmailView.setText("Passwords don't match");
+            mPasswordView.setText("");
+            mConfirmView.setText("");
+            AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
+            builder1.setMessage("Incorrect Information");
+            builder1.setCancelable(true);
+            AlertDialog alert11 = builder1.create();
+            alert11.show();
         }
         /*
         // Check for a valid password, if the user entered one.

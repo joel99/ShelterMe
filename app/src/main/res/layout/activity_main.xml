@@ -6,11 +6,27 @@
     android:layout_height="match_parent"
     tools:context="com.example.shivad.myapplication.MainActivity">
 
+    <TextView
+        android:id="@+id/messageLogInSuccess"
+        android:layout_width="351dp"
+        android:layout_height="67dp"
+        android:layout_marginEnd="17dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="25dp"
+        android:text="Log In Success!"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <Button
-        android:id="@+id/backSignIn"
-        android:layout_width="wrap_content"
-        android:layout_height="46dp"
-        android:text="Click to go back to Sign In"
-        tools:layout_editor_absoluteX="82dp"
-        tools:layout_editor_absoluteY="222dp" />
+        android:id="@+id/bLogOut"
+        android:layout_width="351dp"
+        android:layout_height="84dp"
+        android:layout_marginEnd="17dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="14dp"
+        android:text="Log Out"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/messageLogInSuccess" />
 </android.support.constraint.ConstraintLayout>

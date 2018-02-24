@@ -27,3 +27,7 @@ hs_err_pid*
 # this is just gradle supplementary files (afaik)
 .gradle/
 build/
+
+
+local.properties
+app/app.iml

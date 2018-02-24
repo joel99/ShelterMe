@@ -20,3 +20,10 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+
+# this stuff should probably not be synced because everyone generates it from the source files
+# on their own.
+.idea/
+# this is just gradle supplementary files (afaik)
+.gradle/
+build/

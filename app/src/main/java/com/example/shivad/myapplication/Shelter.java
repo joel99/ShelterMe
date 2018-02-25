@@ -106,4 +106,15 @@ public class Shelter {
         }
         return this._key == ((Shelter) other).getKey();
     }
+
+    @Override
+    public String toString() {
+        String str = _name + "\n";
+        str += "Capacity: " + _capacity + "\n";
+        str += "Latitude: " + _latitude + "\n";
+        str += "Longitude: " + _longitude + "\n";
+        str += "Address: " + _address + "\n";
+        str += "Phone: " + _phoneNumber + "\n";
+        return str;
+    }
 }

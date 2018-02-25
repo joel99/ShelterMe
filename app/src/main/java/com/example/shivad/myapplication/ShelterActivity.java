@@ -1,6 +1,7 @@
 package com.example.shivad.myapplication;
 
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -25,6 +26,7 @@ import java.util.ArrayList;
 public class ShelterActivity extends AppCompatActivity {
     private ListView shelterListView;
     private Button returnButton;
+    private ArrayList<Shelter> shelterList;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,7 +35,7 @@ public class ShelterActivity extends AppCompatActivity {
         shelterListView = (ListView) findViewById(R.id.shelterListView);
         returnButton = (Button) findViewById(R.id.returnButton);
 
-        ArrayList<Shelter> shelterList = getSheltersFromFile();
+        shelterList = getSheltersFromFile();
         String[] shelterNames = new String[shelterList.size()];
         for (int i = 0; i < shelterNames.length; i++) {
             shelterNames[i] = shelterList.get(i).getName();
@@ -44,7 +46,11 @@ public class ShelterActivity extends AppCompatActivity {
         shelterListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+                AlertDialog.Builder builder = new AlertDialog.Builder(ShelterActivity.this);
+                builder.setMessage(shelterList.get(position).toString())
+                        .setNegativeButton("Exit", null)
+                        .create()
+                        .show();
             }
         });
 

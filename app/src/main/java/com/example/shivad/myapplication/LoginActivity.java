@@ -34,10 +34,7 @@ public class LoginActivity extends AppCompatActivity {
         userLogIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Jacob Debugging
-                LoginActivity.this.startActivity(new Intent(LoginActivity.this, MainActivity.class));
-
-                /*final String userEmailString = userEmail.getText().toString();
+                final String userEmailString = userEmail.getText().toString();
                 final String userPasswordString = userPassword.getText().toString();
 
                 if (userEmailString.length() <= 0) {
@@ -77,7 +74,7 @@ public class LoginActivity extends AppCompatActivity {
                             }
                         }
                     }
-                }*/
+                }
             }
         });
     }

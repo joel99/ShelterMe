@@ -1,9 +1,13 @@
 package com.example.shivad.myapplication;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 
 import java.io.BufferedReader;
@@ -20,12 +24,14 @@ import java.util.ArrayList;
 
 public class ShelterActivity extends AppCompatActivity {
     private ListView shelterListView;
+    private Button returnButton;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shelter);
 
         shelterListView = (ListView) findViewById(R.id.shelterListView);
+        returnButton = (Button) findViewById(R.id.returnButton);
 
         ArrayList<Shelter> shelterList = getSheltersFromFile();
         String[] shelterNames = new String[shelterList.size()];
@@ -34,6 +40,21 @@ public class ShelterActivity extends AppCompatActivity {
         }
         ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, shelterNames);
         shelterListView.setAdapter(adapter);
+
+        shelterListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+            }
+        });
+
+        returnButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent returnIntent = new Intent(ShelterActivity.this, LoginActivity.class);
+                ShelterActivity.this.startActivity(returnIntent);
+            }
+        });
     }
 
     public ArrayList<Shelter> getSheltersFromFile() {

@@ -34,7 +34,10 @@ public class LoginActivity extends AppCompatActivity {
         userLogIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final String userEmailString = userEmail.getText().toString();
+                //Jacob Debugging
+                LoginActivity.this.startActivity(new Intent(LoginActivity.this, MainActivity.class));
+
+                /*final String userEmailString = userEmail.getText().toString();
                 final String userPasswordString = userPassword.getText().toString();
 
                 if (userEmailString.length() <= 0) {
@@ -58,7 +61,7 @@ public class LoginActivity extends AppCompatActivity {
                         User _userExist = userList.checkUser(userEmailString);
                         if (_userExist == null) {
                             AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
-                            builder.setMessage("The email you entered does not exist.")
+                            builder.setMessage("The email you entered is not associated with a ShelterMe account.")
                                     .setNegativeButton("Retry", null)
                                     .create()
                                     .show();
@@ -74,7 +77,7 @@ public class LoginActivity extends AppCompatActivity {
                             }
                         }
                     }
-                }
+                }*/
             }
         });
     }

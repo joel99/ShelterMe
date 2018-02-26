@@ -38,12 +38,12 @@ public class Shelter {
         return this._key == ((Shelter) other)._key;
     }
 
-    public String getName() {
+    @Override
+    public String toString() {
         return _name;
     }
 
-    @Override
-    public String toString() {
+    public String getMessage() {
         String str = _name + "\n\n";
         str += "Capacity: " + _capacity + "\n";
         str += "Restrictions: " + _restrictions + "\n";

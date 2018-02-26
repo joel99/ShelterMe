@@ -29,11 +29,12 @@
         <activity android:name=".MainActivity"></activity>
         <activity
             android:name=".ShelterActivity"
-            android:label="List of Nearby Shelters">
+            android:label="Nearby Shelters">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
+        <activity android:name=".AddShelterActivity"></activity>
     </application>
 
 </manifest>

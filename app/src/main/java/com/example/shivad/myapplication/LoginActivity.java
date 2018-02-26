@@ -65,6 +65,11 @@ public class LoginActivity extends AppCompatActivity {
                                     .show();
                         } else {
                             if (_userExist.getPassword().equals(userPasswordString)) {
+                                AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+                                builder.setMessage("Login Succesful!")
+                                        .setNegativeButton("Ok", null)
+                                        .create()
+                                        .show();
                                 LoginActivity.this.startActivity(new Intent (LoginActivity.this, MainActivity.class));
                             } else {
                                 AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);

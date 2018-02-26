@@ -47,4 +47,9 @@
         android:layout_height="wrap_content"
         android:text="Register Here" />
 
+    <Button
+        android:id="@+id/bViewNoLogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="View Shelters Without Logging In"/>
 </LinearLayout>

@@ -22,7 +22,7 @@ public class UserList {
 
     public boolean addUser(User user) {
         for (User u : userList) {
-            if (u.getEmail().equals(user.getEmail())) {
+            if (user.equals(u)) {
                 return false;
             }
         }

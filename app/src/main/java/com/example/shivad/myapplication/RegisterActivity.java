@@ -61,7 +61,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
         if (userList.addUser(_user) == false) {
             AlertDialog.Builder builder = new AlertDialog.Builder(RegisterActivity.this);
-            builder.setMessage("The email you entered already exist.")
+            builder.setMessage("The email you entered is already associated with a ShelterMe account.")
                     .setNegativeButton("Retry", null)
                     .create()
                     .show();

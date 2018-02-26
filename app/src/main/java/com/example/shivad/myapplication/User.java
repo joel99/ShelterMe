@@ -38,4 +38,15 @@ public class User {
     public void setUserType(UserType userType) {
         _userType = userType;
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        }
+        if (other == null || !(other instanceof User)) {
+            return false;
+        }
+        return this._email.equals(((User) other).getEmail());
+    }
 }

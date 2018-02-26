@@ -29,9 +29,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent viewShelterList = new Intent(MainActivity.this, ShelterActivity.class);
-                Log.d("VIEW SHELTERS", "VIEW BUTTON CLICKED");
                 MainActivity.this.startActivity(viewShelterList);
-                Log.d("?", "VIEW BUTTON CLICKED");
 
             }
         });

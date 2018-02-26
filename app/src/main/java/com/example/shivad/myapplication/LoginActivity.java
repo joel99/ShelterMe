@@ -11,7 +11,7 @@ import android.content.Intent;
 public class LoginActivity extends AppCompatActivity {
 
     private EditText userEmail, userPassword;
-    private Button userLogIn, toRegister;
+    private Button userLogIn, toRegister, viewShelters;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +22,7 @@ public class LoginActivity extends AppCompatActivity {
         userPassword = (EditText) findViewById(R.id.etPassword);
         userLogIn = (Button) findViewById(R.id.bLogIn);
         toRegister = (Button) findViewById(R.id.bToRegister);
+        viewShelters = (Button) findViewById(R.id.bViewNoLogin);
 
         toRegister.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,6 +76,14 @@ public class LoginActivity extends AppCompatActivity {
                         }
                     }
                 }
+            }
+        });
+
+        viewShelters.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent viewShelterList = new Intent(LoginActivity.this, ShelterActivity.class);
+                LoginActivity.this.startActivity(viewShelterList);
             }
         });
     }

@@ -110,22 +110,21 @@ public class ShelterActivity extends AppCompatActivity {
                 String[] shelterInfo = formattedLine.trim().split("\n");
 
                 shelterList.add(new Shelter(
-                        Integer.parseInt(shelterInfo[0].trim()),   //key
-                        shelterInfo[1].trim(),                     //name
+                        Integer.parseInt(shelterInfo[0].trim()),            //key
+                        shelterInfo[1].trim(),                              //name
                         Integer.parseInt("0" + shelterInfo[2].trim()),   //capacity
-                        shelterInfo[3].trim(),                      //gender
-                        Double.parseDouble(shelterInfo[4].trim()), //latitude
-                        Double.parseDouble(shelterInfo[5].trim()), //longitude
-                        shelterInfo[6].trim(),                     //address
-                        shelterInfo[7].trim()                      //phoneNumber
+                        shelterInfo[3].trim(),                              //gender
+                        Double.parseDouble(shelterInfo[4].trim()),          //latitude
+                        Double.parseDouble(shelterInfo[5].trim()),          //longitude
+                        shelterInfo[6].trim(),                              //address
+                        shelterInfo[7].trim(),                              //specialNotes
+                        shelterInfo[8].trim()                               //phoneNumber
                 ));
             }
 
         } catch (FileNotFoundException e) {
-            Log.d("FileNotFoundException", "a");
             e.printStackTrace();
         } catch (IOException e) {
-            Log.d("IOException", "a");
             e.printStackTrace();
         } finally {
             if (br != null) {
@@ -135,9 +134,6 @@ public class ShelterActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
             }
-        }
-        for (Shelter s: shelterList) {
-            Log.d(s.getName(), "a");
         }
         return shelterList;
     }

@@ -16,17 +16,18 @@ import java.io.IOException;
  */
 
 public class Shelter {
-    private final int _key;     // 0
-    private String _name;       // 1
-    private int _capacity;      // 2
-    private String _gender;     // 3
-    private double _longitude;  // 4
-    private double _latitude;   // 5
-    private String _address;    // 6
-    private String _phoneNumber;// 7
+    public final int _key;         // 0
+    private String _name;           // 1
+    private int _capacity;          // 2
+    private String _gender;         // 3
+    private double _longitude;      // 4
+    private double _latitude;       // 5
+    private String _address;        // 6
+    private String _specialNotes;   // 7
+    private String _phoneNumber;    // 8
 
     public Shelter(int key, String name, int capacity, String gender, double longitude,
-                   double latitude, String address, String phoneNumber) {
+                   double latitude, String address, String specialNotes, String phoneNumber) {
         _key = key;
         _name = name;
         _capacity = capacity;
@@ -34,68 +35,9 @@ public class Shelter {
         _longitude = longitude;
         _latitude = latitude;
         _address = address;
+        _specialNotes = specialNotes;
         _phoneNumber = phoneNumber;
     }
-    public int getKey() {
-        return _key;
-    }
-
-    public String getName() {
-        return _name;
-    }
-
-    public void setName(String name) {
-        _name = name;
-    }
-
-    public int getCapacity() {
-        return _capacity;
-    }
-
-    public void setCapacity(int capacity) {
-        _capacity = capacity;
-    }
-
-    public String getGender() {
-        return _gender;
-    }
-
-    public void setGender(String gender) {
-        _gender = gender;
-    }
-
-    public double getLongitutde() {
-        return _longitude;
-    }
-
-    public void setLongitude(double longitude) {
-        _longitude = longitude;
-    }
-
-    public double getLatitude() {
-        return _latitude;
-    }
-
-    public void setLatitude(double latitude) {
-        _latitude = latitude;
-    }
-
-    public String getAddress() {
-        return _address;
-    }
-
-    public void setAddress(String address) {
-        _address = address;
-    }
-
-    public String getPhoneNumber() {
-        return _phoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        _phoneNumber = phoneNumber;
-    }
-
     @Override
     public boolean equals (Object other) {
         if (this == other) {
@@ -104,17 +46,23 @@ public class Shelter {
         if (other == null || !(other instanceof Shelter)) {
             return false;
         }
-        return this._key == ((Shelter) other).getKey();
+        return this._key == ((Shelter) other)._key;
+    }
+
+    public String getName() {
+        return _name;
     }
 
     @Override
     public String toString() {
-        String str = _name + "\n";
+        String str = _name + "\n\n";
         str += "Capacity: " + _capacity + "\n";
+        str += "Restrictions: " + _gender + "\n";
         str += "Latitude: " + _latitude + "\n";
         str += "Longitude: " + _longitude + "\n";
         str += "Address: " + _address + "\n";
         str += "Phone: " + _phoneNumber + "\n";
+        str += "Special Notes: " + _specialNotes;
         return str;
     }
 }

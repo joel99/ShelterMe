@@ -7,17 +7,13 @@ package com.example.shivad.myapplication;
 public enum UserType {
     HOMELESS("Homeless"), ADMIN("Admin");
 
-    private  String userType;
-
-    UserType(String user) {
-        this.userType = user;
-    }
+    private String userType;
 
     public String getUserType() {
         return userType;
     }
 
-    public void setUserType(String user) {
+    UserType(String user) {
         this.userType = user;
     }
 

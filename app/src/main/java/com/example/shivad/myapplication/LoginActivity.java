@@ -3,6 +3,7 @@ package com.example.shivad.myapplication;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -52,6 +53,10 @@ public class LoginActivity extends AppCompatActivity {
                             .show();
                 } else {
                     if (userEmailString.equals("user") && userPasswordString.equals("pass")) {
+                        AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+                        builder.setMessage("Login Succesful!")
+                                .create()
+                                .show();
                         LoginActivity.this.startActivity(new Intent (LoginActivity.this, MainActivity.class));
                     } else {
                         UserList userList = UserList.getInstance();
@@ -67,7 +72,6 @@ public class LoginActivity extends AppCompatActivity {
                             if (_userExist.getPassword().equals(userPasswordString)) {
                                 AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
                                 builder.setMessage("Login Succesful!")
-                                        .setNegativeButton("Ok", null)
                                         .create()
                                         .show();
                                 LoginActivity.this.startActivity(new Intent (LoginActivity.this, MainActivity.class));

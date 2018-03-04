@@ -17,4 +17,5 @@
     </string>
     <string name="title_activity_register">Register</string>
     <string name="action_sign_in">Sign in or register</string>
+    <string name="search_hint">Shelter name</string>
 </resources>

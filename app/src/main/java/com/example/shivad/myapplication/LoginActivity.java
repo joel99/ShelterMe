@@ -19,6 +19,9 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        // Load shelters (kinda hacky)
+        ShelterList.loadSheltersFromFile(this);
+
         userEmail = (EditText) findViewById(R.id.etEmail);
         userPassword = (EditText) findViewById(R.id.etPassword);
         userLogIn = (Button) findViewById(R.id.bLogIn);

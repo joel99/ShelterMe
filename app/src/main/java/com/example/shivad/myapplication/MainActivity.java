@@ -9,6 +9,7 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
+    private Button searchShelters;
     private Button viewShelters;
     private Button addShelters;
     private Button logOut;
@@ -18,17 +19,23 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        searchShelters = (Button) findViewById(R.id.bSearchShelters);
         viewShelters = (Button) findViewById(R.id.bViewShelters);
         logOut = (Button) findViewById(R.id.bLogOut);
         addShelters = (Button) findViewById(R.id.bAddShelter);
 
+        searchShelters.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent viewSearchShelters = new Intent(MainActivity.this, SearchActivity.class);
+                MainActivity.this.startActivity(viewSearchShelters);
+            }
+        });
         viewShelters.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent viewShelterList = new Intent(MainActivity.this, ShelterActivity.class);
                 MainActivity.this.startActivity(viewShelterList);
-
             }
         });
         addShelters.setOnClickListener(new View.OnClickListener() {

@@ -47,7 +47,7 @@ public class AddShelterActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String nameString = name.getText().toString();
                 String capacityString = capacity.getText().toString();
-                String restrictionsString = restrictions.getText().toString();
+                String[] restrictionsString = restrictions.getText().toString().trim().toLowerCase().split("\\/(?! )");
                 String longitudeString = longitude.getText().toString();
                 String latitudeString = latitude.getText().toString();
                 String addressString = address.getText().toString();

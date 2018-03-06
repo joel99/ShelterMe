@@ -91,6 +91,7 @@ public class Shelter {
         } else if (_restrictions.contains("men") && !gender.equals("male")) {
             genderFlag = false;
         }
+        genderFlag = genderFlag || gender.equals("unspecified");
         // Age restrictions
         boolean familyFlag = false;
         for (int i = 0; i < _restrictions.size(); i++) {
@@ -111,6 +112,7 @@ public class Shelter {
         if (familyFlag && !ageGroup.equals("families with newborns")) {
             ageFlag = false;
         }
+        ageFlag = ageFlag || ageGroup.equals("unspecified");
         return genderFlag || ageFlag;
     }
 }

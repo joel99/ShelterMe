@@ -37,10 +37,10 @@ public class SearchActivity extends AppCompatActivity {
 
         // Populate spinners
         String[] genderSpinnerOps = new String[] {
-                "Male", "Female"
+                "Male", "Female", "Unspecified"
         };
         String[] ageSpinnerOps = new String[] {
-                "Families with Newborns", "Children", "Young Adults", "Anyone"
+                "Families with Newborns", "Children", "Young Adults", "Anyone", "Unspecified"
         };
         ArrayAdapter<String> genderAdapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_item, genderSpinnerOps);

@@ -21,7 +21,21 @@ public class Shelter {
     private String _address;        // 6
     private String _specialNotes;   // 7
     private String _phoneNumber;    // 8
+    private int _vacancy;
 
+    public Shelter(int key, String name, int capacity, int vacancy, String[] restrictions, double latitude,
+                   double longitude, String address, String phoneNumber, String specialNotes) {
+        _key = key;
+        _name = name;
+        _capacity = capacity;
+        _restrictions = new ArrayList<String>(Arrays.asList(restrictions));
+        _longitude = longitude;
+        _latitude = latitude;
+        _address = address;
+        _specialNotes = specialNotes;
+        _phoneNumber = phoneNumber;
+        _vacancy = vacancy;
+    }
     public Shelter(int key, String name, int capacity, String[] restrictions, double longitude,
                    double latitude, String address, String specialNotes, String phoneNumber) {
         _key = key;
@@ -33,6 +47,7 @@ public class Shelter {
         _address = address;
         _specialNotes = specialNotes;
         _phoneNumber = phoneNumber;
+        _vacancy = capacity;
     }
     @Override
     public boolean equals (Object other) {
@@ -50,9 +65,13 @@ public class Shelter {
         return _name;
     }
 
+    public void incVacancy(int i) {
+        _vacancy += i;
+    }
     public String getMessage() {
         String str = _name + "\n\n";
         str += "Capacity: " + _capacity + "\n";
+        str += "Vacancies: " + _vacancy + "\n";
         String rString = "";
         if (_restrictions.size() != 0) {
             rString = _restrictions.get(0);
@@ -69,6 +88,12 @@ public class Shelter {
         return str;
     }
 
+    public boolean add(int i) {
+        if(i <= 0) return false;
+        if(_vacancy - i < 0) return false;
+        _vacancy -= i;
+        return true;
+    }
     // VERY HARDCODED...
     public Boolean matchRestrictions(String name, String gender, String ageGroup) {
         // Name match

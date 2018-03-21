@@ -2,6 +2,7 @@ package com.example.shivad.myapplication;
 
 import android.content.Context;
 import android.content.res.Resources;
+import android.util.Log;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -26,6 +27,9 @@ public class ShelterList {
     private List<Shelter> shelterList;
 
     private ShelterList() {
+        shelterList = DBInterfacer.getVal();
+        Log.d("hiiii", "DB -> ShelterList");
+        if(shelterList == null)
         shelterList = new ArrayList<>();
     }
 
@@ -36,7 +40,15 @@ public class ShelterList {
             }
         }
         shelterList.add(shelter);
+        DBInterfacer.setVal(shelter);
         return true;
+    }
+    public static void updateDB() {
+        DBInterfacer.setVal(_instance.shelterList);
+    }
+
+    public List<Shelter> getList() {
+        return shelterList;
     }
 
     public Shelter get(int i) {
@@ -46,6 +58,7 @@ public class ShelterList {
     public int size() {
         return shelterList.size();
     }
+
     public Shelter[] toArray() {
         return shelterList.toArray(new Shelter[shelterList.size()]);
     }

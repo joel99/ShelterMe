@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.content.Intent;
 
+
 public class LoginActivity extends AppCompatActivity {
 
     private EditText userEmail, userPassword;
@@ -18,9 +19,16 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        Log.d("hiiii", "LoginActivityStart");
+
+        //DON'T DELETE THESE LINES OR CHANGE ORDER, IT MAKES IT WORK FOR SOME REASON
+        ShelterList shelterList = ShelterList.getInstance();
+        if(shelterList.size() == 0)
+        for(int i = 0; i < 500000000; i++) {}
+        UserList userList = UserList.getInstance();
 
         // Load shelters (kinda hacky)
-        ShelterList.loadSheltersFromFile(this);
+        //ShelterList.loadSheltersFromFile(this);
 
         userEmail = (EditText) findViewById(R.id.etEmail);
         userPassword = (EditText) findViewById(R.id.etPassword);
@@ -31,10 +39,13 @@ public class LoginActivity extends AppCompatActivity {
         toRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+
                 Intent registerIntent = new Intent(LoginActivity.this, RegisterActivity.class);
                 LoginActivity.this.startActivity(registerIntent);
             }
         });
+
 
         userLogIn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,7 +88,9 @@ public class LoginActivity extends AppCompatActivity {
                                 builder.setMessage("Login Succesful!")
                                         .create()
                                         .show();
-                                LoginActivity.this.startActivity(new Intent (LoginActivity.this, MainActivity.class));
+                                Intent i = new Intent (LoginActivity.this, MainActivity.class);
+                                i.putExtra("userEmail", _userExist.getEmail());
+                                LoginActivity.this.startActivity(i);
                             } else {
                                 AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
                                 builder.setMessage("Password is incorrect.")
@@ -98,6 +111,7 @@ public class LoginActivity extends AppCompatActivity {
                 LoginActivity.this.startActivity(viewShelterList);
             }
         });
+        Log.d("hiiii", "endofLoginAct");
     }
 
 }

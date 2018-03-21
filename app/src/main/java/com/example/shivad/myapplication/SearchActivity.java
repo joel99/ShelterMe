@@ -71,9 +71,11 @@ public class SearchActivity extends AppCompatActivity {
         String nameText = shelterNameText.getText().toString().trim();
         String ageGroup = spinAge.getSelectedItem().toString();
         String gender = spinGender.getSelectedItem().toString();
+        String userEmail = getIntent().getStringExtra("userEmail");
         searchIntent.putExtra("name", nameText);
         searchIntent.putExtra("ageGroup", ageGroup);
         searchIntent.putExtra("gender", gender);
+        searchIntent.putExtra("userEmail", userEmail);
         startActivity(searchIntent);
     }
 

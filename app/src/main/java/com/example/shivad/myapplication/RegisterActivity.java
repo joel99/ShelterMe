@@ -4,6 +4,7 @@ package com.example.shivad.myapplication;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -22,7 +23,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-
         newEmail = (EditText) findViewById(R.id.etNewEmail);
         newPassword = (EditText) findViewById(R.id.etNewPassword);
         confirmPassword = (EditText) findViewById(R.id.etConfirmPassword);
@@ -57,9 +57,11 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         }
 
         User _user = new User(email, password, (UserType) userTypeSpinner.getSelectedItem());
+
         UserList userList = UserList.getInstance();
 
         if (userList.addUser(_user) == false) {
+
             AlertDialog.Builder builder = new AlertDialog.Builder(RegisterActivity.this);
             builder.setMessage("The email you entered is already associated with a ShelterMe account.")
                     .setNegativeButton("Retry", null)

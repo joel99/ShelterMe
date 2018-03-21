@@ -1,5 +1,6 @@
 package com.example.shivad.myapplication;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
 
@@ -31,6 +33,8 @@ public class ShelterActivity extends AppCompatActivity {
     private ListView shelterListView;
     private Button returnButton;
     private ShelterList shelterList;
+    private String m_Text = "0";
+
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,12 +75,12 @@ public class ShelterActivity extends AppCompatActivity {
 
         // Streams are not supported shoot
         final ArrayList<Shelter> filteredShelters = new ArrayList<>();
-        for (int i = 0; extras != null && i < shelterArr.length; i++) {
+        for (int i = 0; extras != null && extras.size() > 1 && i < shelterArr.length; i++) {
             if (shelterArr[i].matchRestrictions(nameFilter, genderFilter, ageGroupFilter)) {
                 filteredShelters.add(shelterArr[i]);
             }
         }
-        if (extras == null) {
+        if (extras == null || extras.size() == 1) {
             Collections.addAll(filteredShelters, shelterArr);
         }
 
@@ -84,12 +88,69 @@ public class ShelterActivity extends AppCompatActivity {
         shelterListView.setAdapter(adapter);
         shelterListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(ShelterActivity.this);
                 builder.setMessage(filteredShelters.get(position).getMessage())
-                        .setNegativeButton("Exit", null)
-                        .create()
-                        .show();
+                        .setNegativeButton("Exit", null);
+
+                        if(UserList.getInstance().checkUser(getIntent().getStringExtra("userEmail")) != null) {
+                            builder.setMessage(filteredShelters.get(position).getMessage())
+                                    .setPositiveButton("Sign In", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialogInterface, int i) {
+                                            AlertDialog.Builder builder2 = new AlertDialog.Builder(ShelterActivity.this);
+                                            final EditText input = new EditText(ShelterActivity.this);
+                                            builder2.setView(input);
+                                            builder2.setMessage("How many People do you want to sign in?")
+                                                    .setPositiveButton("Enter", new DialogInterface.OnClickListener() {
+                                                        @Override
+                                                        public void onClick(DialogInterface dialog, int which) {
+                                                            m_Text = input.getText().toString();
+                                                            try {
+                                                                if (!filteredShelters.get(position).add(Integer.parseInt(m_Text))) {
+                                                                    AlertDialog.Builder build = new AlertDialog.Builder(ShelterActivity.this);
+                                                                    build.setMessage("Invalid input or not enough space")
+                                                                            .setNegativeButton("Exit", null)
+                                                                            .show();
+                                                                }
+                                                                UserList.getInstance().checkUser(getIntent().getStringExtra("userEmail"))
+                                                                        .setShelter(filteredShelters.get(position), Integer.parseInt(m_Text));
+                                                            }
+                                                            //catch(Exception n) {
+                                                            catch (NumberFormatException n) {
+                                                                AlertDialog.Builder build = new AlertDialog.Builder(ShelterActivity.this);
+                                                                build.setMessage("Invalid input")
+                                                                        .setNegativeButton("Exit", null)
+                                                                        .show();
+                                                            }
+
+                                                        }
+                                                    })
+                                                    .setNegativeButton("Cancel", null).show();
+                                        }
+                                    }).show();
+                        }
+                        else {
+                            builder.show();
+                        }
+                /*
+                AlertDialog.Builder builder2 = new AlertDialog.Builder(ShelterActivity.this);
+                final EditText input = new EditText(ShelterActivity.this);
+                builder2.setView(input);
+                builder2.setMessage("How many People do you want to sign in?")
+                        .setPositiveButton("Enter", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                m_Text = input.getText().toString();
+                            }})
+                        .setNegativeButton("Cancel", null).show();
+
+                if(!filteredShelters.get(position).add(Integer.parseInt(m_Text))) {
+                    AlertDialog.Builder build = new AlertDialog.Builder(ShelterActivity.this);
+                    builder.setMessage("Invalid input or not enough space")
+                            .setNegativeButton("Exit", null)
+                            .create();
+                }*/
                 }
         });
 

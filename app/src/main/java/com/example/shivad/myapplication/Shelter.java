@@ -68,6 +68,7 @@ public class Shelter {
     public void incVacancy(int i) {
         _vacancy += i;
     }
+
     public String getMessage() {
         String str = _name + "\n\n";
         str += "Capacity: " + _capacity + "\n";
@@ -86,6 +87,18 @@ public class Shelter {
         str += "Phone: " + _phoneNumber + "\n";
         str += "Special Notes: " + _specialNotes;
         return str;
+    }
+
+    public double get_latitude() {
+        return _latitude;
+    }
+
+    public double get_longitude() {
+        return _longitude;
+    }
+
+    public String get_phoneNumber() {
+        return _phoneNumber;
     }
 
     public boolean add(int i) {

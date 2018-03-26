@@ -24,8 +24,8 @@ public class DBInterfacer {
     static FirebaseDatabase database = FirebaseDatabase.getInstance();
     static DatabaseReference shelterRef = database.getReference("shelter");
     static DatabaseReference userRef = database.getReference("user");
-    private static int userCount = 0;
-    private static int shelterCount = 0;
+    //private static int userCount = 0;
+    //private static int shelterCount = 0;
     public DBInterfacer()
     {
         FirebaseDatabase.getInstance().setPersistenceEnabled(true);

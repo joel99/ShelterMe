@@ -14,14 +14,22 @@
     <ListView
         android:id="@+id/shelterListView"
         android:layout_width="fill_parent"
-        android:layout_height="match_parent"
+        android:layout_height="230dp"
+        android:layout_weight="1"
         android:divider="@color/material_blue_grey_800"
-        android:dividerHeight="1dp"
-        android:layout_weight="1"/>
+        android:dividerHeight="1dp" />
+
+    <Button
+        android:id="@+id/toMap"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight=".01"
+        android:text="View On Map" />
+
     <Button
         android:id="@+id/returnButton"
         android:layout_width="match_parent"
         android:layout_height="80dp"
-        android:text="Return"
-        android:layout_weight="0"/>
+        android:layout_weight="0"
+        android:text="Return" />
 </LinearLayout>

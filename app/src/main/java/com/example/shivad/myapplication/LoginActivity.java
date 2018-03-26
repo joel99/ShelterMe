@@ -107,6 +107,7 @@ public class LoginActivity extends AppCompatActivity {
         viewShelters.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //Intent viewShelterList = new Intent(LoginActivity.this, MapsActivity.class);
                 Intent viewShelterList = new Intent(LoginActivity.this, ShelterActivity.class);
                 LoginActivity.this.startActivity(viewShelterList);
             }

@@ -23,6 +23,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 import java.util.stream.Stream;
 
 /**
@@ -33,12 +34,14 @@ public class ShelterActivity extends AppCompatActivity {
     private ListView shelterListView;
     private Button returnButton;
     private ShelterList shelterList;
+    private Button mapButton;
     private String m_Text = "0";
 
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_shelter_list);
+        mapButton = (Button) findViewById(R.id.toMap);
         shelterListView = (ListView) findViewById(R.id.shelterListView);
         returnButton = (Button) findViewById(R.id.returnButton);
 
@@ -48,16 +51,22 @@ public class ShelterActivity extends AppCompatActivity {
                 finish();
             }
         });
+        mapButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                Intent viewMap = new Intent(ShelterActivity.this, MapsActivity.class);
+                //String s = getIntent().getStringExtra("userEmail");
+                //viewMap.putExtra("userEmail", s);
+                Intent intent = getIntent();
+                Bundle extras = intent.getExtras();
+                //final List<Shelter> filteredShelters = getFiltered(shelterArr,extras);
+                viewMap.putExtras(extras);
+                ShelterActivity.this.startActivity(viewMap);
+            }
+        });
     }
 
-    protected void onResume() {
-        super.onResume();
-
-        shelterList = ShelterList.getInstance();
-        Shelter[] shelterArr = shelterList.toArray();
-        // filter here
-        Intent intent = getIntent();
-        Bundle extras = intent.getExtras();
+    public static List<Shelter> getFiltered(Shelter[] shelterArr, Bundle extras) {
         String nameFilter = "";
         String genderFilter = "Anyone";
         String ageGroupFilter = "Anyone";
@@ -74,7 +83,7 @@ public class ShelterActivity extends AppCompatActivity {
         }
 
         // Streams are not supported shoot
-        final ArrayList<Shelter> filteredShelters = new ArrayList<>();
+        final List<Shelter> filteredShelters = new ArrayList<>();
         for (int i = 0; extras != null && extras.size() > 1 && i < shelterArr.length; i++) {
             if (shelterArr[i].matchRestrictions(nameFilter, genderFilter, ageGroupFilter)) {
                 filteredShelters.add(shelterArr[i]);
@@ -83,6 +92,17 @@ public class ShelterActivity extends AppCompatActivity {
         if (extras == null || extras.size() == 1) {
             Collections.addAll(filteredShelters, shelterArr);
         }
+        return filteredShelters;
+    }
+    protected void onResume() {
+        super.onResume();
+
+        shelterList = ShelterList.getInstance();
+        Shelter[] shelterArr = shelterList.toArray();
+        // filter here
+        Intent intent = getIntent();
+        Bundle extras = intent.getExtras();
+        final List<Shelter> filteredShelters = getFiltered(shelterArr,extras);
 
         ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, filteredShelters);
         shelterListView.setAdapter(adapter);

@@ -60,7 +60,9 @@ public class ShelterActivity extends AppCompatActivity {
                 Intent intent = getIntent();
                 Bundle extras = intent.getExtras();
                 //final List<Shelter> filteredShelters = getFiltered(shelterArr,extras);
-                viewMap.putExtras(extras);
+                if(extras != null) {
+                    viewMap.putExtras(extras);
+                }
                 ShelterActivity.this.startActivity(viewMap);
             }
         });

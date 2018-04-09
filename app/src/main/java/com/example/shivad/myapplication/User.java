@@ -14,7 +14,6 @@ public class User {
     private int _numShelter;
     private int _key;
 
-    //public User() {}
     public User(String email, String password, UserType userType) {
         this(email, password, userType, 0);
     }
@@ -29,6 +28,7 @@ public class User {
         _numShelter = num;
         _shelter = s;
     }
+
     @Override
     public String toString() {
         return _email;

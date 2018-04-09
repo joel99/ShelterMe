@@ -27,9 +27,6 @@ public class LoginActivity extends AppCompatActivity {
         for(int i = 0; i < 500000000; i++) {}
         UserList userList = UserList.getInstance();
 
-        // Load shelters (kinda hacky)
-        //ShelterList.loadSheltersFromFile(this);
-
         userEmail = (EditText) findViewById(R.id.etEmail);
         userPassword = (EditText) findViewById(R.id.etPassword);
         userLogIn = (Button) findViewById(R.id.bLogIn);
@@ -39,8 +36,6 @@ public class LoginActivity extends AppCompatActivity {
         toRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
                 Intent registerIntent = new Intent(LoginActivity.this, RegisterActivity.class);
                 LoginActivity.this.startActivity(registerIntent);
             }
@@ -107,7 +102,6 @@ public class LoginActivity extends AppCompatActivity {
         viewShelters.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Intent viewShelterList = new Intent(LoginActivity.this, MapsActivity.class);
                 Intent viewShelterList = new Intent(LoginActivity.this, ShelterActivity.class);
                 LoginActivity.this.startActivity(viewShelterList);
             }

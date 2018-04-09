@@ -21,16 +21,12 @@ public class UserList {
     private UserList() {
         userList = DBInterfacer.getUserVal();
         Log.d("hiiii", "DB -> UserList");
-        //Log.d("hiiii",userList.get(0).getEmail());
         if(userList == null) {
             userList = new ArrayList<>();
         }
     }
 
     public boolean addUser(User user) {
-        //Log.d("hiiii", "ListSize: " + userList.size());
-        //userList = DBInterfacer.getUserVal();
-        //Log.d("hiiii", "" + userList.size());
         for (User u : userList) {
             if (user.equals(u)) {
                 return false;
@@ -56,12 +52,6 @@ public class UserList {
     }
 
     public User checkUser(String email) {
-        //this.addUser(new User());
-        //DBInterfacer.update();
-        //Log.d("hiiii", "checkUser");
-        //Log.d("hiiii", "" + userList.size());
-        //userList = DBInterfacer.getUserVal();
-        //Log.d("hiiii", "" + userList.size());
         for (User u : userList) {
             if (u.getEmail().equals(email)) {
                 return u;

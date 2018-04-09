@@ -11,23 +11,26 @@ import static org.junit.Assert.*;
  */
 public class ShelterTest {
     private Shelter shelter;
-
+    private Shelter shelter2;
+    private Shelter shelter3;
     @Before
     public void setUp() throws Exception {
         String[] s = {};
         shelter = new Shelter(1, "5th st Shelter", 200, s, 0, 0, "840 Techwood Dr. Atlanta Ga, 30313",
                 "","2018719367");
+
+        shelter2 = new Shelter(2, "5th st Shelter", 200, s, 0, 0, "840 Techwood Dr. Atlanta Ga, 30313",
+                "","2018719367");
+
+        shelter3 = new Shelter(1, "5th st Shelter", 200, s, 0, 0, "840 Techwood Dr. Atlanta Ga, 30313",
+                "","2018719367");
     }
 
     @Test
-    public void addShelter() {
-        ShelterList instance = ShelterList.getInstance();
-        // returns true when shelter not already in database
-        assertTrue(instance.addShelter(shelter));
-        List<Shelter> list = instance.getList();
-        // shelter added to list
-        assertTrue(list.contains(shelter));
-        // returns false because shelter already on the list
-        assertFalse(instance.addShelter(shelter));
+    public void equals() {
+        assertFalse(shelter.equals(shelter2));
+        assertFalse(shelter2.equals(shelter));
+        assertTrue(shelter.equals(shelter3));
+        assertFalse(shelter.equals(null));
     }
 }

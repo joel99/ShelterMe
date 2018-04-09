@@ -1,7 +1,6 @@
 package com.example.shivad.myapplication;
 
 import android.content.Context;
-import android.content.res.Resources;
 import android.util.Log;
 
 import java.io.BufferedReader;
@@ -43,26 +42,51 @@ public class ShelterList {
         DBInterfacer.setVal(shelter);
         return true;
     }
+
+    /**
+     * updates database
+     */
     public static void updateDB() {
         DBInterfacer.setVal(_instance.shelterList);
     }
 
+    /**
+     * returns a list of the shelters
+     * @return a list of the shelters
+     */
     public List<Shelter> getList() {
         return shelterList;
     }
 
+    /**
+     * returns the ith shelter
+     * @param i the index
+     * @return the shelter with id i
+     */
     public Shelter get(int i) {
         return shelterList.get(i);
     }
 
+    /**
+     * returns the size of the list of all shelters
+     * @return the size of the list of all shelters
+     */
     public int size() {
         return shelterList.size();
     }
 
+    /**
+     * returns the list of all shelters as an array
+     * @return the list of all shelters as an array
+     */
     public Shelter[] toArray() {
         return shelterList.toArray(new Shelter[shelterList.size()]);
     }
 
+    /**
+     * loads shelters from a file
+     * @param actContext the context of the activity
+     */
     public static void loadSheltersFromFile(Context actContext) {
         BufferedReader br = null;
         try {

@@ -5,26 +5,16 @@ import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.Spinner;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Stream;
 
 /**
  * Created by Jacob on 2/25/2018.
@@ -32,18 +22,15 @@ import java.util.stream.Stream;
 
 public class ShelterActivity extends AppCompatActivity {
     private ListView shelterListView;
-    private Button returnButton;
-    private ShelterList shelterList;
-    private Button mapButton;
     private String m_Text = "0";
 
-
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_shelter_list);
-        mapButton = (Button) findViewById(R.id.toMap);
-        shelterListView = (ListView) findViewById(R.id.shelterListView);
-        returnButton = (Button) findViewById(R.id.returnButton);
+        Button mapButton = findViewById(R.id.toMap);
+        shelterListView = findViewById(R.id.shelterListView);
+        Button returnButton = findViewById(R.id.returnButton);
 
         returnButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,6 +55,12 @@ public class ShelterActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Returns a list of the shelters matching the parameters
+     * @param shelterArr the array of shelters
+     * @param extras extra shelters
+     * @return a list of the shelters
+     */
     public static List<Shelter> getFiltered(Shelter[] shelterArr, Bundle extras) {
         String nameFilter = "";
         String genderFilter = "Anyone";
@@ -96,10 +89,11 @@ public class ShelterActivity extends AppCompatActivity {
         }
         return filteredShelters;
     }
+    @Override
     protected void onResume() {
         super.onResume();
 
-        shelterList = ShelterList.getInstance();
+        ShelterList shelterList = ShelterList.getInstance();
         Shelter[] shelterArr = shelterList.toArray();
         // filter here
         Intent intent = getIntent();
@@ -155,24 +149,7 @@ public class ShelterActivity extends AppCompatActivity {
                         else {
                             builder.show();
                         }
-                /*
-                AlertDialog.Builder builder2 = new AlertDialog.Builder(ShelterActivity.this);
-                final EditText input = new EditText(ShelterActivity.this);
-                builder2.setView(input);
-                builder2.setMessage("How many People do you want to sign in?")
-                        .setPositiveButton("Enter", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                m_Text = input.getText().toString();
-                            }})
-                        .setNegativeButton("Cancel", null).show();
 
-                if(!filteredShelters.get(position).add(Integer.parseInt(m_Text))) {
-                    AlertDialog.Builder build = new AlertDialog.Builder(ShelterActivity.this);
-                    builder.setMessage("Invalid input or not enough space")
-                            .setNegativeButton("Exit", null)
-                            .create();
-                }*/
                 }
         });
 

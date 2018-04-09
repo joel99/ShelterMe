@@ -4,7 +4,6 @@ package com.example.shivad.myapplication;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -23,10 +22,10 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-        newEmail = (EditText) findViewById(R.id.etNewEmail);
-        newPassword = (EditText) findViewById(R.id.etNewPassword);
-        confirmPassword = (EditText) findViewById(R.id.etConfirmPassword);
-        userTypeSpinner = (Spinner) findViewById(R.id.spinUserType);
+        newEmail = findViewById(R.id.etNewEmail);
+        newPassword = findViewById(R.id.etNewPassword);
+        confirmPassword = findViewById(R.id.etConfirmPassword);
+        userTypeSpinner = findViewById(R.id.spinUserType);
 
         ArrayAdapter<String> adapterForUserType = new ArrayAdapter(this, android.R.layout.simple_spinner_item, UserType.values());
         adapterForUserType.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);

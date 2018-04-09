@@ -2,14 +2,11 @@ package com.example.shivad.myapplication;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.Spinner;
 
 /**
@@ -18,21 +15,19 @@ import android.widget.Spinner;
 
 // This is just the search form
 public class SearchActivity extends AppCompatActivity {
-    private Button returnButton;
-    private Button searchButton;
     private EditText shelterNameText;
     private Spinner spinGender;
     private Spinner spinAge;
-
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_shelters);
         // Attach
-        shelterNameText = (EditText) findViewById(R.id.tShelterName);
-        returnButton = (Button) findViewById(R.id.bReturn);
-        searchButton = (Button) findViewById(R.id.bSearch);
-        spinGender = (Spinner) findViewById(R.id.spinGender);
-        spinAge = (Spinner) findViewById(R.id.spinAge);
+        shelterNameText = findViewById(R.id.tShelterName);
+        Button returnButton = findViewById(R.id.bReturn);
+        Button searchButton = findViewById(R.id.bSearch);
+        spinGender = findViewById(R.id.spinGender);
+        spinAge = findViewById(R.id.spinAge);
 
         // Populate spinners
         String[] genderSpinnerOps = new String[] {
@@ -41,12 +36,12 @@ public class SearchActivity extends AppCompatActivity {
         String[] ageSpinnerOps = new String[] {
                 "Families with Newborns", "Children", "Young Adults", "Anyone", "Unspecified"
         };
-        ArrayAdapter<String> genderAdapter = new ArrayAdapter<String>(this,
+        ArrayAdapter<String> genderAdapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_spinner_item, genderSpinnerOps);
         genderAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinGender.setAdapter(genderAdapter);
 
-        ArrayAdapter<String> ageAdapter = new ArrayAdapter<String>(this,
+        ArrayAdapter<String> ageAdapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_spinner_item, ageSpinnerOps);
         ageAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinAge.setAdapter(ageAdapter);

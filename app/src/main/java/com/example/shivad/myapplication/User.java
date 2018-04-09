@@ -1,7 +1,5 @@
 package com.example.shivad.myapplication;
 
-import android.util.Log;
-
 /**
  * Created by JihwanK on 2/21/18.
  */
@@ -14,12 +12,35 @@ public class User {
     private int _numShelter;
     private int _key;
 
+    /**
+     * constructor for the user class
+     * @param email the users email
+     * @param password the users password
+     * @param userType the users type
+     */
     public User(String email, String password, UserType userType) {
         this(email, password, userType, 0);
     }
+
+    /**
+     * constructor for the user class
+     * @param email the users email
+     * @param password the users password
+     * @param userType the users usertype
+     * @param key the users id
+     */
     public User(String email, String password, UserType userType, int key) {
         this(email, password, userType, key, null, 1);
     }
+    /**
+     * constructor for the user class
+     * @param email the users email
+     * @param password the users password
+     * @param userType the users usertype
+     * @param key the users id
+     * @param s the shelter the user works at
+     * @param num the number of shelters the user works at
+     */
     public User(String email, String password, UserType userType, int key, Shelter s, int num) {
         _email = email;
         _password = password;
@@ -34,14 +55,27 @@ public class User {
         return _email;
     }
 
+    /**
+     * returns the users key
+     * @return the users key
+     */
     public int get_key() {
         return _key;
     }
 
+    /**
+     * sets the users key
+     * @param _key the users new key
+     */
     public void set_key(int _key) {
         this._key = _key;
     }
 
+    /**
+     * changes the vacancy of s
+     * @param s the shelter being edited
+     * @param num the number of vacancies in the shelter
+     */
     public void setShelter(Shelter s, int num) {
         if(_shelter != null) {
             _shelter.incVacancy(_numShelter);
@@ -54,30 +88,50 @@ public class User {
         DBInterfacer.setUserShelter(this, s, num);
     }
 
+    /**
+     * returns the shelter the user works at
+     * @return the shelter the user works at
+     */
     public Shelter getShelter() {
         return _shelter;
     }
 
+    /**
+     * returns the users email
+     * @return the users email
+     */
     public String getEmail() {
         return _email;
     }
 
-    public void setEmail(String email) {
-        _email = email;
-    }
-
+    /**
+     * returns the users password
+     * @return the users password
+     */
     public String getPassword() {
         return _password;
     }
 
+    /**
+     * sets the users password
+     * @param password the users new password
+     */
     public void setPassword(String password) {
         _password = password;
     }
 
+    /**
+     * returns the users type
+     * @return the users type
+     */
     public UserType getUserType() {
         return _userType;
     }
 
+    /**
+     * sets the users type
+     * @param userType the users new type
+     */
     public void setUserType(UserType userType) {
         _userType = userType;
     }
@@ -87,9 +141,6 @@ public class User {
         if (this == other) {
             return true;
         }
-        if (other == null || !(other instanceof User)) {
-            return false;
-        }
-        return this._email.equals(((User) other).getEmail());
+        return other != null && other instanceof User && this._email.equals(((User) other).getEmail());
     }
 }

@@ -1,9 +1,5 @@
 package com.example.shivad.myapplication;
 
-import android.util.Log;
-import android.widget.Toast;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -23,12 +19,25 @@ public class Shelter {
     private String _phoneNumber;    // 8
     private int _vacancy;
 
+    /**
+     * Constructor for Shelter object
+     * @param key the shelter's key
+     * @param name the shelter's name
+     * @param capacity the shelter's capacity
+     * @param vacancy the number of vacancies in the shelter
+     * @param restrictions any restrictions the shelter has
+     * @param latitude the shelter's longitude
+     * @param longitude the shelter's latitude
+     * @param address the shelter's address
+     * @param phoneNumber the shelter's phone number
+     * @param specialNotes any notes
+     */
     public Shelter(int key, String name, int capacity, int vacancy, String[] restrictions, double latitude,
                    double longitude, String address, String phoneNumber, String specialNotes) {
         _key = key;
         _name = name;
         _capacity = capacity;
-        _restrictions = new ArrayList<String>(Arrays.asList(restrictions));
+        _restrictions = new ArrayList<>(Arrays.asList(restrictions));
         _longitude = longitude;
         _latitude = latitude;
         _address = address;
@@ -36,12 +45,24 @@ public class Shelter {
         _phoneNumber = phoneNumber;
         _vacancy = vacancy;
     }
+    /**
+     * Constructor for Shelter object
+     * @param key the shelter's key
+     * @param name the shelter's name
+     * @param capacity the shelter's capacity
+     * @param restrictions any restrictions the shelter has
+     * @param latitude the shelter's longitude
+     * @param longitude the shelter's latitude
+     * @param address the shelter's address
+     * @param phoneNumber the shelter's phone number
+     * @param specialNotes any notes
+     */
     public Shelter(int key, String name, int capacity, String[] restrictions, double longitude,
                    double latitude, String address, String specialNotes, String phoneNumber) {
         _key = key;
         _name = name;
         _capacity = capacity;
-        _restrictions = new ArrayList<String>(Arrays.asList(restrictions));
+        _restrictions = new ArrayList<>(Arrays.asList(restrictions));
         _longitude = longitude;
         _latitude = latitude;
         _address = address;
@@ -54,10 +75,7 @@ public class Shelter {
         if (this == other) {
             return true;
         }
-        if (other == null || !(other instanceof Shelter)) {
-            return false;
-        }
-        return this._key == ((Shelter) other)._key;
+        return other != null && other instanceof Shelter && this._key == ((Shelter) other)._key;
     }
 
     @Override
@@ -65,10 +83,18 @@ public class Shelter {
         return _name;
     }
 
+    /**
+     * increases the number of vacancies by i
+     * @param i the increment
+     */
     public void incVacancy(int i) {
         _vacancy += i;
     }
 
+    /**
+     * returns the message shown when clicking on the shelter
+     * @return the message to be displayed
+     */
     public String getMessage() {
         String str = _name + "\n\n";
         str += "Capacity: " + _capacity + "\n";
@@ -89,18 +115,35 @@ public class Shelter {
         return str;
     }
 
+    /**
+     * returns the latitude
+     * @return the latitude
+     */
     public double get_latitude() {
         return _latitude;
     }
 
+    /**
+     * returns the longitude
+     * @return the longitude
+     */
     public double get_longitude() {
         return _longitude;
     }
 
+    /**
+     * returns the phone number
+     * @return the phone number
+     */
     public String get_phoneNumber() {
         return _phoneNumber;
     }
 
+    /**
+     * decreases vacancy by i
+     * @param i the decrement
+     * @return returns true if there were enough spots left
+     */
     public boolean add(int i) {
         if(i <= 0) return false;
         if(_vacancy - i < 0) return false;
@@ -108,6 +151,14 @@ public class Shelter {
         return true;
     }
     // VERY HARDCODED...
+
+    /**
+     * checks if the Shelter matches the parameters
+     * @param name the name being matched
+     * @param gender the gender restriction being matched
+     * @param ageGroup the age group being matched
+     * @return whether or not the shelter matches
+     */
     public Boolean matchRestrictions(String name, String gender, String ageGroup) {
         // Name match
         name = name.toLowerCase();

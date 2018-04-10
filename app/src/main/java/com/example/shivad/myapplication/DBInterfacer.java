@@ -2,8 +2,6 @@ package com.example.shivad.myapplication;
 
 import android.util.Log;
 
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -11,10 +9,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.LinkedList;
-import java.util.List;
-import java.util.Set;
 
 /**
  * Created by ShivaD on 3/11/18.
@@ -25,6 +20,9 @@ public class DBInterfacer {
     static DatabaseReference shelterRef = database.getReference("shelter");
     static DatabaseReference userRef = database.getReference("user");
 
+    /**
+     * Constructor for DBInterfacer
+     */
     public DBInterfacer() {
         FirebaseDatabase.getInstance().setPersistenceEnabled(true);
         //shelterRef.setValue(new ArrayList<Shelter>());
@@ -46,6 +44,11 @@ public class DBInterfacer {
             }
         });*/
     }
+
+    /**
+     * sets user
+     * @param o the user being set
+     */
     public static void setUser(User o) {
         ArrayList<User> diffNum = new ArrayList<>();
 
@@ -57,9 +60,18 @@ public class DBInterfacer {
         o.set_key(diffNum.size() - 1);
         userRef.child("" + (diffNum.size() - 1)).setValue(o);
     }
+    /**
+     * sets user
+     * @param o the user being set
+     */
     public static void setUser(Object o) {
         userRef.setValue(o);
     }
+
+    /**
+     * sets shelter
+     * @param o the shelter being set
+     */
     public static void setVal(Shelter o) {
         ArrayList<Shelter> diffNum = new ArrayList<>();
 
@@ -70,9 +82,18 @@ public class DBInterfacer {
         }
         shelterRef.child("" + (diffNum.size() - 1)).setValue(o);
     }
+    /**
+     * sets shelter
+     * @param o the shelter being set
+     */
     public static void setVal(Object o) {
         shelterRef.setValue(o);
     }
+
+    /**
+     * Returns a list of the shelters stored in the db
+     * @return a list of the shelters stored in the db
+     */
     public static LinkedList<Shelter> getVal() {
         final LinkedList<Shelter> ll =  new LinkedList<>();
 
@@ -103,8 +124,12 @@ public class DBInterfacer {
         });
         return ll;
     }
+    /**
+     * Returns a list of the users stored in the db
+     * @return a list of the users stored in the db
+     */
     public static LinkedList<User> getUserVal() {
-        final LinkedList<User> ll =  new LinkedList<User>();
+        final LinkedList<User> ll = new LinkedList<>();
         userRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -133,11 +158,21 @@ public class DBInterfacer {
         });
         return ll;
     }
+
+    /**
+     * Assigns a user to be working on a shelter
+     * @param u the user working at the shelter
+     * @param s the shelter
+     * @param num the number of shelters the user works at
+     */
     public static void setUserShelter(User u, Shelter s, int num) {
         userRef.child("" + u.get_key()).child("shelter").setValue(s._key);
         userRef.child("" + u.get_key()).child("num").setValue(num);
     }
 
+    /**
+     * updates the database
+     */
     public static void update() {
         userRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -156,6 +191,10 @@ public class DBInterfacer {
         });
     }
 
+    /**
+     * updates a shelter
+     * @param s the shelter being updated
+     */
     public static void update(Shelter s) {
         shelterRef.child("" + s._key).setValue(s);
     }

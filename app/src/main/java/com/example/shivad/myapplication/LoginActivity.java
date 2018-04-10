@@ -13,7 +13,6 @@ import android.content.Intent;
 public class LoginActivity extends AppCompatActivity {
 
     private EditText userEmail, userPassword;
-    private Button userLogIn, toRegister, viewShelters;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,11 +26,11 @@ public class LoginActivity extends AppCompatActivity {
         for(int i = 0; i < 500000000; i++) {}
         UserList userList = UserList.getInstance();
 
-        userEmail = (EditText) findViewById(R.id.etEmail);
-        userPassword = (EditText) findViewById(R.id.etPassword);
-        userLogIn = (Button) findViewById(R.id.bLogIn);
-        toRegister = (Button) findViewById(R.id.bToRegister);
-        viewShelters = (Button) findViewById(R.id.bViewNoLogin);
+        userEmail = findViewById(R.id.etEmail);
+        userPassword = findViewById(R.id.etPassword);
+        Button userLogIn = findViewById(R.id.bLogIn);
+        Button toRegister = findViewById(R.id.bToRegister);
+        Button viewShelters = findViewById(R.id.bViewNoLogin);
 
         toRegister.setOnClickListener(new View.OnClickListener() {
             @Override

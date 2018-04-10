@@ -14,7 +14,6 @@ import android.widget.EditText;
 
 public class AddShelterActivity extends AppCompatActivity {
     private EditText name, capacity, restrictions, longitude, latitude, address, notes, phone;
-    private Button submit, toMain;
     private static int manualShelter = 20;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,17 +21,17 @@ public class AddShelterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_shelter);
 
 
-        name = (EditText) findViewById(R.id.etName);
-        capacity = (EditText) findViewById(R.id.etCapacity);
-        restrictions = (EditText) findViewById(R.id.etRestrictions);
-        longitude = (EditText) findViewById(R.id.etLongitude);
-        latitude = (EditText) findViewById(R.id.etLatitude);
-        address = (EditText) findViewById(R.id.etAddress);
-        notes = (EditText) findViewById(R.id.etSpecialNotes);
-        phone = (EditText) findViewById(R.id.etPhoneNumber);
+        name = findViewById(R.id.etName);
+        capacity = findViewById(R.id.etCapacity);
+        restrictions = findViewById(R.id.etRestrictions);
+        longitude = findViewById(R.id.etLongitude);
+        latitude = findViewById(R.id.etLatitude);
+        address = findViewById(R.id.etAddress);
+        notes = findViewById(R.id.etSpecialNotes);
+        phone = findViewById(R.id.etPhoneNumber);
 
-        submit = (Button) findViewById(R.id.bSubmit);
-        toMain = (Button) findViewById(R.id.bBack);
+        Button submit = findViewById(R.id.bSubmit);
+        Button toMain = findViewById(R.id.bBack);
 
         toMain.setOnClickListener(new View.OnClickListener() {
             @Override

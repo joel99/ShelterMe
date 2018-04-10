@@ -45,37 +45,9 @@ public class Shelter {
         _phoneNumber = phoneNumber;
         _vacancy = vacancy;
     }
-    /**
-     * Constructor for Shelter object
-     * @param key the shelter's key
-     * @param name the shelter's name
-     * @param capacity the shelter's capacity
-     * @param restrictions any restrictions the shelter has
-     * @param latitude the shelter's longitude
-     * @param longitude the shelter's latitude
-     * @param address the shelter's address
-     * @param phoneNumber the shelter's phone number
-     * @param specialNotes any notes
-     */
-    public Shelter(int key, String name, int capacity, String[] restrictions, double longitude,
-                   double latitude, String address, String specialNotes, String phoneNumber) {
-        _key = key;
-        _name = name;
-        _capacity = capacity;
-        _restrictions = new ArrayList<>(Arrays.asList(restrictions));
-        _longitude = longitude;
-        _latitude = latitude;
-        _address = address;
-        _specialNotes = specialNotes;
-        _phoneNumber = phoneNumber;
-        _vacancy = capacity;
-    }
     @Override
     public boolean equals (Object other) {
-        if (this == other) {
-            return true;
-        }
-        return other != null && other instanceof Shelter && this._key == ((Shelter) other)._key;
+        return this == other || other != null && other instanceof Shelter && this._key == ((Shelter) other)._key;
     }
 
     @Override

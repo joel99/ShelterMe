@@ -27,7 +27,6 @@ public class ShelterList {
 
     private ShelterList() {
         shelterList = DBInterfacer.getVal();
-        Log.d("hiiii", "DB -> ShelterList");
         if(shelterList == null)
         shelterList = new ArrayList<>();
     }
@@ -136,7 +135,8 @@ public class ShelterList {
                         Integer.parseInt(shelterInfo[0].trim()),            //key
                         shelterInfo[1].trim(),                              //name
                         Integer.parseInt("0" + shelterInfo[2].trim()),   //capacity
-                        restrictions,                              //restrictions
+                        Integer.parseInt("0" + shelterInfo[2].trim()),   //vacancies = capacity (ungiven)
+                        restrictions,                                       //restrictions
                         Double.parseDouble(shelterInfo[4].trim()),          //latitude
                         Double.parseDouble(shelterInfo[5].trim()),          //longitude
                         shelterInfo[6].trim(),                              //address

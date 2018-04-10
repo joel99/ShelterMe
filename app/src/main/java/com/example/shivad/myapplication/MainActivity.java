@@ -17,7 +17,6 @@ public class MainActivity extends AppCompatActivity {
         Button searchShelters = findViewById(R.id.bSearchShelters);
         Button viewShelters = findViewById(R.id.bViewShelters);
         Button logOut = findViewById(R.id.bLogOut);
-        Button addShelters = findViewById(R.id.bAddShelter);
 
         searchShelters.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -35,16 +34,6 @@ public class MainActivity extends AppCompatActivity {
                 String s = getIntent().getStringExtra("userEmail" );
                 viewShelterList.putExtra("userEmail", s);
                 MainActivity.this.startActivity(viewShelterList);
-            }
-        });
-        addShelters.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent addShelter = new Intent(MainActivity.this, AddShelterActivity.class);
-                //String s = getIntent().getStringExtra("userEmail" );
-                //addShelter.putExtra("userEmail", s);
-                MainActivity.this.startActivity(addShelter);
-
             }
         });
         logOut.setOnClickListener(new View.OnClickListener() {

@@ -138,9 +138,6 @@ public class User {
 
     @Override
     public boolean equals(Object other) {
-        if (this == other) {
-            return true;
-        }
-        return other != null && other instanceof User && this._email.equals(((User) other).getEmail());
+        return this == other || other != null && other instanceof User && this._email.equals(((User) other).getEmail());
     }
 }

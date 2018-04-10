@@ -12,8 +12,12 @@ public class ShelterTest {
     private Shelter shelter;
     private Shelter shelter2;
     private Shelter shelter3;
+
+    /**
+     * sets up the test
+     */
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         String[] s = {};
         shelter = new Shelter(1, "5th st Shelter", 200, 150,s, 0, 0, "840 Techwood Dr. Atlanta Ga, 30313",
                 "","2018719367");
@@ -25,6 +29,9 @@ public class ShelterTest {
                 "","2018719367");
     }
 
+    /**
+     * tests Shelter.equals()
+     */
     @Test
     public void equals() {
         assertFalse(shelter.equals(shelter2));

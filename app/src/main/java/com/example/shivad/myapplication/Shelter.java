@@ -104,6 +104,14 @@ public class Shelter {
     }
 
     /**
+     * the vacancy
+     * @return the vacancy
+     */
+    public int get_vacancy() {
+        return _vacancy;
+    }
+
+    /**
      * returns the phone number
      * @return the phone number
      */

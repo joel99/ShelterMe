@@ -18,7 +18,6 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        Log.d("hiiii", "LoginActivityStart");
 
         //DON'T DELETE THESE LINES OR CHANGE ORDER, IT MAKES IT WORK FOR SOME REASON
         ShelterList shelterList = ShelterList.getInstance();
@@ -62,7 +61,7 @@ public class LoginActivity extends AppCompatActivity {
                 } else {
                     if (userEmailString.equals("user") && userPasswordString.equals("pass")) {
                         AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
-                        builder.setMessage("Login Succesful!")
+                        builder.setMessage("Login Successful!")
                                 .create()
                                 .show();
                         LoginActivity.this.startActivity(new Intent (LoginActivity.this, MainActivity.class));
@@ -79,7 +78,7 @@ public class LoginActivity extends AppCompatActivity {
                         } else {
                             if (_userExist.getPassword().equals(userPasswordString)) {
                                 AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
-                                builder.setMessage("Login Succesful!")
+                                builder.setMessage("Login Successful!")
                                         .create()
                                         .show();
                                 Intent i = new Intent (LoginActivity.this, MainActivity.class);
@@ -105,7 +104,6 @@ public class LoginActivity extends AppCompatActivity {
                 LoginActivity.this.startActivity(viewShelterList);
             }
         });
-        Log.d("hiiii", "endofLoginAct");
     }
 
 }

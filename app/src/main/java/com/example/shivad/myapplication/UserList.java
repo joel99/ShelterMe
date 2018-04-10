@@ -24,7 +24,6 @@ public class UserList {
 
     private UserList() {
         userList = DBInterfacer.getUserVal();
-        Log.d("hiiii", "DB -> UserList");
         if(userList == null) {
             userList = new ArrayList<>();
         }
@@ -43,7 +42,6 @@ public class UserList {
         }
         userList.add(user);
         DBInterfacer.setUser(user);
-        Log.d("hiiii", "putInDB");
         return true;
     }
 

@@ -15,8 +15,11 @@ import static org.junit.Assert.assertEquals;
 public class ShelterSearchTest {
     private ArrayList<Shelter> shelters;
     // matchRestrictions only cares about name, age, gender. Shelter internally only has name and restrictions array
+    /**
+     * setUp - prepare Test class by populating 'shelters' with test shelters
+     */
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         // ArrayList<String> shelterNames = new ArrayList<>();
         ArrayList<String[]> shelterRestrictions = new ArrayList<>(); // branches in some semblance of order
         shelters = new ArrayList<>();
@@ -32,8 +35,12 @@ public class ShelterSearchTest {
         }
     }
 
+    /**
+     * testMatchRestrictions - covers all branches of matchRestrictions method in shelter model class
+     * @exception on failure of test
+     */
     @Test
-    public void testMatchRestrictions() {
+    public void testMatchRestrictions() throws Exception {
 
         assertEquals(true, true);
 

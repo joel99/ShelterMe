@@ -23,7 +23,6 @@ public class LoginActivity extends AppCompatActivity {
         ShelterList shelterList = ShelterList.getInstance();
         if(shelterList.size() == 0)
         for(int i = 0; i < 500000000; i++) {}
-        UserList userList = UserList.getInstance();
 
         userEmail = findViewById(R.id.etEmail);
         userPassword = findViewById(R.id.etPassword);
@@ -67,6 +66,7 @@ public class LoginActivity extends AppCompatActivity {
                         LoginActivity.this.startActivity(new Intent (LoginActivity.this, MainActivity.class));
                     } else {
                         UserList userList = UserList.getInstance();
+                        UserLoginTrialMap userTrial = UserLoginTrialMap.getInstance();
 
                         User _userExist = userList.checkUser(userEmailString);
                         if (_userExist == null) {
@@ -76,7 +76,15 @@ public class LoginActivity extends AppCompatActivity {
                                     .create()
                                     .show();
                         } else {
-                            if (_userExist.getPassword().equals(userPasswordString)) {
+                            if (!userTrial.getMap().containsKey(_userExist.getEmail())) {
+                                AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+                                builder.setMessage("You cannot login due to 3 times of incorrect password."
+                                        + "\nContact the ShelterMe to reset the password.")
+                                        .setNegativeButton("Go Back", null)
+                                        .create()
+                                        .show();
+                            } else if (_userExist.getPassword().equals(userPasswordString)) {
+                                userTrial.resetUserTrial(userEmailString);
                                 AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
                                 builder.setMessage("Login Successful!")
                                         .create()
@@ -85,11 +93,23 @@ public class LoginActivity extends AppCompatActivity {
                                 i.putExtra("userEmail", _userExist.getEmail());
                                 LoginActivity.this.startActivity(i);
                             } else {
-                                AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
-                                builder.setMessage("Password is incorrect.")
-                                        .setNegativeButton("Retry", null)
-                                        .create()
-                                        .show();
+                                userTrial.decreaseTrial(userEmailString);
+                                if (userTrial.getValue(userEmailString) == null) {
+                                    AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+                                    builder.setMessage("Password is incorrect. You have "
+                                            + "0 times left to try to login."
+                                            + "\nContact the ShelterMe to reset the password. ")
+                                            .setNegativeButton("Go Back", null)
+                                            .create()
+                                            .show();
+                                } else {
+                                    AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+                                    builder.setMessage("Password is incorrect. You have "
+                                            + userTrial.getValue(userEmailString) + " times left to try to login.")
+                                            .setNegativeButton("Retry", null)
+                                            .create()
+                                            .show();
+                                }
                             }
                         }
                     }

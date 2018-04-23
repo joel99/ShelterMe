@@ -67,7 +67,7 @@ public class UserList {
     }
 
     /**
-     * checks if a user is on the list
+            * checks if a user is on the list
      * @param email the users email
      * @return whether or not the user is registered
      */
